@@ -5,7 +5,9 @@ pipeline {
 
   stages {
     stage('Test') {
-      sh 'npm test'
+      steps {
+        sh 'npm test'
+      }
     }
     post {
       success {
