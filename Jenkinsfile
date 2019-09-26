@@ -1,21 +1,26 @@
 pipeline {
-  agent {
-    docker { image: "node:latest" }
-  }
-
-  stages {
-    stage('Test') {
-      steps {
-        sh 'npm test'
+    agent {
+      docker {
+        image 'node:7-alpine'
       }
     }
-  }
-  post {
-    success {
-      'We good'
+    stages {
+        // stage('Build') {
+        //     steps {
+        //         sh './gradlew build'
+        //     }
+        // }
+        stage('Test') {
+            steps {
+                sh 'Awww yeahh'
+            }
+        }
     }
-    failure {
-      'Big issues'
-    }
-  }
+
+    // post {
+    //     always {
+    //         archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+    //         junit 'build/reports/**/*.xml'
+    //     }
+    // }
 }
