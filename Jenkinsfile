@@ -9,13 +9,13 @@ pipeline {
         sh 'npm test'
       }
     }
-    post {
-      success {
-        'We good'
-      }
-      failure {
-        'Big issues'
-      }
+  }
+  post {
+    success {
+      'We good'
+    }
+    failure {
+      'Big issues'
     }
   }
 }
