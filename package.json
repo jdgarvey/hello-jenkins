@@ -4,15 +4,20 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "jest --coverage"
+    "e2e": "start-server-and-test start http://localhost:3000 cy:run",
+    "cy:run": "cypress run",
+    "test": "jest --coverage",
+    "start": "node index.js"
   },
   "dependencies": {
     "express": "^4.17.1",
     "jest-junit": "^8.0.0"
   },
   "devDependencies": {
+    "cypress": "^3.4.1",
     "jest": "^24.9.0",
     "jest-html-reporter": "^2.6.2",
+    "start-server-and-test": "^1.10.2",
     "yarn": "^1.17.3"
   },
   "jest": {
@@ -30,8 +35,8 @@
     "usePathForSuiteName": "true"
   },
   "jest-html-reporter": {
-		"pageTitle": "Epic test suite",
-		"outputPath": "./reports/index.html",
-		"includeFailureMsg": true
-	}
+    "pageTitle": "Epic test suite",
+    "outputPath": "./reports/index.html",
+    "includeFailureMsg": true
+  }
 }
