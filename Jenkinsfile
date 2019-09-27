@@ -5,15 +5,21 @@ pipeline {
       }
     }
     stages {
-        // stage('Build') {
-        //     steps {
-        //         sh './gradlew build'
-        //     }
-        // }
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
         stage('Test') {
             steps {
-                sh 'Awww yeahh'
+                sh 'npm test'
             }
+        }
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: 'reports/coverage/**/*', fingerprint: true, allowEmptyArchive: true
+            junit 'reports/junit-*.xml'
         }
     }
 
