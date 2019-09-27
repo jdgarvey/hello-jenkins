@@ -18,8 +18,16 @@ pipeline {
     }
     post {
         always {
-            archiveArtifacts artifacts: 'reports/coverage/**/*', fingerprint: true, allowEmptyArchive: true
+            archiveArtifacts artifacts: 'reports/**/*', fingerprint: true, allowEmptyArchive: true
             junit 'reports/junit-*.xml'
+            publishHTML (target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: false,
+                keepAll: true,
+                reportDir: 'reports',
+                reportFiles: 'index.html',
+                reportName: "Jest Report"
+            ])
         }
     }
 
