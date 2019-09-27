@@ -1,8 +1,11 @@
 pipeline {
     agent {
       docker {
-        image 'node:7-alpine'
+        image 'node:latest'
       }
+    }
+    environment {
+      HOME = "."
     }
     stages {
         stage('Build') {
@@ -19,22 +22,9 @@ pipeline {
     post {
         always {
             archiveArtifacts artifacts: 'reports/**/*', fingerprint: true, allowEmptyArchive: true
-            junit 'reports/junit-*.xml'
-            publishHTML (target: [
-                allowMissing: false,
-                alwaysLinkToLastBuild: false,
-                keepAll: true,
-                reportDir: 'reports',
-                reportFiles: 'index.html',
-                reportName: "Jest Report"
-            ])
+            sh 'ls reports/coverage/junit/'
+            junit 'reports/**/junit.xml'
+            publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'reports', reportFiles: 'index.html', reportName: 'Jest Report'])
         }
     }
-
-    // post {
-    //     always {
-    //         archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-    //         junit 'build/reports/**/*.xml'
-    //     }
-    // }
 }
