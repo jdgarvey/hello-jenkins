@@ -1,13 +1,13 @@
 {
   "name": "hello-jenkins",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app/index.js",
   "license": "MIT",
   "scripts": {
     "e2e": "start-server-and-test start http://localhost:3000 cy:run",
     "cy:run": "cypress run",
-    "test": "jest --coverage --testPathIgnorePatterns=cypress",
-    "start": "node index.js"
+    "test": "jest app/**",
+    "start": "node app/index.js"
   },
   "dependencies": {
     "express": "^4.17.1",
