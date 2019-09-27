@@ -6,7 +6,7 @@
   "scripts": {
     "e2e": "start-server-and-test start http://localhost:3000 cy:run",
     "cy:run": "cypress run",
-    "test": "jest --coverage",
+    "test": "jest --coverage --testPathIgnorePatterns=cypress",
     "start": "node index.js"
   },
   "dependencies": {
